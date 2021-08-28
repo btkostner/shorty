@@ -1,0 +1,21 @@
+{
+  "name": "shorty",
+  "description": "A simple URL shortener",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "lint": "standard .",
+    "watch": "vite build --watch"
+  },
+  "dependencies": {
+    "alpinejs": "^3.2.4",
+    "autoprefixer": "^10.3.3",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.8",
+    "vite": "^2.5.1"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
