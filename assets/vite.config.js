@@ -14,9 +14,6 @@ export default {
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]'
       }
-    },
-    watch: {
-      exclude: resolve(__dirname, '../priv/static')
     }
   },
   logLevel: process.env.VITE_LOG_LEVEL || 'info',
