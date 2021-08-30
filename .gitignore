@@ -23,7 +23,16 @@ erl_crash.dump
 shorty-*.tar
 
 # Ignore assets that are produced by build tools.
-/priv/static/
+/priv/static/**/*
+!/priv/static/favicon-16.png
+!/priv/static/favicon-32.png
+!/priv/static/favicon-180.png
+!/priv/static/favicon-192.png
+!/priv/static/favicon-512.png
+!/priv/static/favicon.ico
+!/priv/static/logo.png
+!/priv/static/robots.txt
+!/priv/static/site.webmanifest
 
 # Ignore Dialyzer plt files
 /priv/plts/*.plt

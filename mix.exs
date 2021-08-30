@@ -45,6 +45,7 @@ defmodule Shorty.MixProject do
       {:ex_machina, "~> 2.7.0", only: [:dev, :test]},
       {:credo, "~> 1.5", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
+      {:esbuild, "~> 0.1", runtime: Mix.env() == :dev},
       {:floki, ">= 0.30.0", only: :test},
       {:gettext, "~> 0.18"},
       {:hashids, github: "snaiper80/hashids-erlang", tag: "1.0.5"},
@@ -78,7 +79,11 @@ defmodule Shorty.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["cmd --cd assets npm run build", "phx.digest"]
+      "assets.deploy": [
+        "esbuild default --minify",
+        "cmd --cd assets npm run build",
+        "phx.digest"
+      ]
     ]
   end
 end

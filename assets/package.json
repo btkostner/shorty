@@ -4,16 +4,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vite build",
+    "build": "tailwindcss --postcss --input=styles/main.css --output=../priv/static/assets/main.css --minify",
     "lint": "standard .",
-    "watch": "vite build --watch"
+    "watch": "tailwindcss --postcss --input=styles/main.css --output=../priv/static/assets/main.css --watch"
   },
   "dependencies": {
     "alpinejs": "^3.2.4",
     "autoprefixer": "^10.3.3",
     "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.8",
-    "vite": "^2.5.1"
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^2.2.7"
   },
   "devDependencies": {
     "standard": "^16.0.3"

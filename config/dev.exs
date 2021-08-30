@@ -23,15 +23,12 @@ config :shorty, ShortyWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    # Start the vite watcher by calling the built in command with --watch
-    node: [
-      "node_modules/vite/bin/vite.js",
-      "build",
-      "--watch",
-      cd: Path.expand("../assets", __DIR__),
-      # The JEST_WORKER_ID is a huge hack from the tailwindcss source code to
-      # silence its log messages.
-      env: %{"VITE_LOG_LEVEL" => "warn", "JEST_WORKER_ID" => "1"}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    # Start the tailwindcss built in watcher
+    npm: [
+      "run",
+      "watch",
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
