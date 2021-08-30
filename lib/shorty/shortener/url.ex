@@ -74,7 +74,13 @@ defmodule Shorty.Shortener.Url do
   @doc """
   Takes an integer ID and encodes it to a small hash.
   """
-  def encode_hash(id), do: hash_id_ctx() |> :hashids.encode(id) |> to_string()
+  def encode_hash(id) do
+    # This returns a Charlist by default, and we need to put it to a normal
+    # Elixir binary string.
+    hash_id_ctx()
+    |> :hashids.encode(id)
+    |> to_string()
+  end
 
   @doc """
   Takes a hash and decodes it to the original integer ID.
@@ -82,8 +88,9 @@ defmodule Shorty.Shortener.Url do
   def decode_hash(hash) do
     # This is a "bug" between erlang and elixir. The result shows as a charlist
     # when it's really just an int.
-    [id] = :hashids.decode(hash_id_ctx(), String.to_charlist(hash))
-    id
+    hash_id_ctx()
+    |> :hashids.decode(String.to_charlist(hash))
+    |> hd()
   rescue
     _ -> nil
   end
