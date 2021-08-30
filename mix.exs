@@ -52,9 +52,7 @@ defmodule Shorty.MixProject do
       {:jason, "~> 1.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
-      # Using `master` branch because of https://github.com/phoenixframework/phoenix_live_reload/issues/113
-      {:phoenix_live_reload,
-       github: "phoenixframework/phoenix_live_reload", tag: "master", only: :dev},
+      {:phoenix_live_reload, "~> 1.3.3", only: :dev},
       # Live view is installed, but only used for the new Phoenix 1.6 > heex
       # template engine. No part of LiveView was actually used. More info:
       # https://www.phoenixframework.org/blog/phoenix-1.6-released

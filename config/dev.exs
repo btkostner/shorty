@@ -18,7 +18,7 @@ config :shorty, Shorty.Repo,
 config :shorty, ShortyWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -59,8 +59,6 @@ config :shorty, ShortyWeb.Endpoint,
 # Watch static and templates for browser reloading.
 config :shorty, ShortyWeb.Endpoint,
   live_reload: [
-    # This adds a debounce to refreshing to give Vite time to build everything.
-    debounce: 150,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
