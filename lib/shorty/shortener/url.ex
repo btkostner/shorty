@@ -1,4 +1,8 @@
 defmodule Shorty.Shortener.Url do
+  @moduledoc """
+  `Ecto.Schema` for storing shortened urls.
+  """
+
   use Ecto.Schema
 
   import Ecto.Changeset
@@ -44,9 +48,9 @@ defmodule Shorty.Shortener.Url do
 
       # Anyone in control of a top level domain, really doesn't need a Url shortener.
       %{host: host} ->
-        if not String.contains?(host, "."),
-          do: Keyword.put([], field, "can't be top level"),
-          else: []
+        if String.contains?(host, "."),
+          do: [],
+          else: Keyword.put([], field, "can't be top level")
 
       _ ->
         []

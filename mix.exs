@@ -35,13 +35,14 @@ defmodule Shorty.MixProject do
     [
       {:ecto_sql, "~> 3.6"},
       {:ex_machina, "~> 2.7.0", only: [:dev, :test]},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:floki, ">= 0.30.0", only: :test},
       {:gettext, "~> 0.18"},
       {:hashids, github: "snaiper80/hashids-erlang", tag: "1.0.5"},
       {:jason, "~> 1.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
-      # Using `master` branch because of https://github.com/phoenixframework/phoenix_live_reload/issues/113 
+      # Using `master` branch because of https://github.com/phoenixframework/phoenix_live_reload/issues/113
       {:phoenix_live_reload,
        github: "phoenixframework/phoenix_live_reload", tag: "master", only: :dev},
       # Live view is installed, but only used for the new Phoenix 1.6 > heex
