@@ -1,0 +1,26 @@
+<div class="flex-1 flex flex-row items-center justify-center pt-16 pb-32 lg:pt-14 px-4 max-w-max mx-auto">
+  <main class="sm:flex">
+    <p class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-500 sm:text-5xl">
+      404
+    </p>
+
+    <div class="sm:ml-6">
+      <div class="sm:border-l sm:border-gray-700 sm:pl-6">
+        <h1 class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl">Page Not Found</h1>
+
+        <p class="mt-4 text-base text-gray-400">
+          Please check the URL in the address bar and try again.
+        </p>
+      </div>
+
+      <div class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+        <a
+          href={Routes.homepage_path(Endpoint, :index)}
+          class="inline-flex items-center px-4 py-2 rounded-md shadow bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+        >
+          Back to shortening
+        </a>
+      </div>
+    </div>
+  </main>
+</div>

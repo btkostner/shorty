@@ -3,7 +3,9 @@ import { resolve } from 'path'
 export default {
   build: {
     assetsDir: resolve(__dirname),
-    emptyOutDir: true,
+    // This silences a warning message about not emptying the output dir. It
+    // does nothing and removing it will have the same result + a log message.
+    emptyOutDir: false,
     outDir: resolve(__dirname, '../priv/static'),
     rollupOptions: {
       input: './scripts/main.js',
@@ -12,6 +14,9 @@ export default {
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]'
       }
+    },
+    watch: {
+      exclude: resolve(__dirname, '../priv/static')
     }
   },
   logLevel: process.env.VITE_LOG_LEVEL || 'info',

@@ -1,0 +1,66 @@
+<main class="flex-1 flex flex-row items-center justify-center pt-16 pb-32 lg:pt-14 lg:overflow-hidden">
+  <div class="mx-auto max-w-md sm:max-w-2xl lg:w-screen lg:max-w-3xl xl:max-w-4xl px-4 lg:px-8 sm:text-center">
+    <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+      <span class="block"><%= gettext "A fast and simple" %></span>
+      <span class="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-500 sm:pb-5"><%= gettext "URL shortener" %></span>
+    </h1>
+
+    <p class="text-base text-gray-300 sm:text-lg xl:text-xl">
+      <%= gettext "Take any website URL and shorten it for use in Twitter or SMS." %>
+    </p>
+
+    <%= form_for @changeset, Routes.homepage_path(@conn, :create), [
+      class: "mt-8 lg:w-full",
+    ], fn f -> %>
+      <div
+        class="sm:flex sm:flex-wrap"
+        x-data={ Jason.encode!(%{url: Map.get(f.source.changes, :url, "")}) }
+        x-init="$watch('url', (u) => (url = urlInsertHelper(u)))"
+      >
+        <div class="min-w-0 flex-1">
+          <label
+            for="url"
+            class="sr-only"
+          >
+            <%= gettext "URL" %>
+          </label>
+          <%= text_input f, :url, [
+            id: "url",
+            inputmode: "url",
+            "x-model": "url",
+            placeholder: gettext("Enter a URL"),
+            class: "block bg-white w-full xl:text-xl py-3 xl:py-4 px-4 xl:px-6 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900",
+            value: Map.get(f.source.changes, :url, ""),
+            required: true,
+            autofocus: true
+          ] %>
+        </div>
+        <div class="mt-3 sm:mt-0 sm:ml-3">
+          <button
+            type="submit"
+            class="block w-full xl:text-xl py-3 xl:py-4 px-4 xl:px-6 rounded-md shadow bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+          >
+            <%= gettext "Shorten" %>
+          </button>
+        </div>
+
+        <div class="w-full text-left min-h-8 mx-4 xl:mx-6 mt-2 text-sm h-[1em] text-red-400">
+          <%= if error_tag(f, :url) != [] do %>
+            <%= gettext "Url" %> <%= error_tag(f, :url) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <p class="mt-8 text-sm text-gray-300 sm:mt-6 sm:max-w-md sm:mx-auto">
+      Our service is provided free under reasonable use. We recommend
+      <a
+        href="https://github.com/btkostner/shorty"
+        target="_blank"
+        rel="noopener noreferrer external"
+        class="text-blue-500 hover:underline"
+      >setting up your own service</a>
+      for large use cases or SLA requirements.
+    </p>
+  </div>
+</main>

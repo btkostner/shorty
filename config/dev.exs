@@ -29,7 +29,9 @@ config :shorty, ShortyWeb.Endpoint,
       "build",
       "--watch",
       cd: Path.expand("../assets", __DIR__),
-      env: %{"VITE_LOG_LEVEL" => "warn"}
+      # The JEST_WORKER_ID is a huge hack from the tailwindcss source code to
+      # silence its log messages.
+      env: %{"VITE_LOG_LEVEL" => "warn", "JEST_WORKER_ID" => "1"}
     ]
   ]
 
@@ -60,10 +62,12 @@ config :shorty, ShortyWeb.Endpoint,
 # Watch static and templates for browser reloading.
 config :shorty, ShortyWeb.Endpoint,
   live_reload: [
+    # This adds a debounce to refreshing to give Vite time to build everything.
+    debounce: 150,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/shorty_web/(live|views)/.*(ex)$",
+      ~r"lib/shorty_web/views/.*(ex)$",
       ~r"lib/shorty_web/templates/.*(eex)$"
     ]
   ]

@@ -8,13 +8,14 @@
 import Config
 
 config :shorty,
-  ecto_repos: [Shorty.Repo]
+  ecto_repos: [Shorty.Repo],
+  hash_id_salt: "shorty url shortener"
 
 # Configures the endpoint
 config :shorty, ShortyWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "eYnkn0wUcvNdNQvvTW6cPei+QwLD0zppD4O8D0uBKuirj5ql4V6/HqKE+zYjATWf",
-  render_errors: [view: ShortyWeb.ErrorView, accepts: ~w(html json), layout: true],
+  render_errors: [view: ShortyWeb.ErrorView, accepts: ~w(html json), layout: "root.html"],
   pubsub_server: Shorty.PubSub
 
 # Configures Elixir's Logger

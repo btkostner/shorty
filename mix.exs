@@ -34,12 +34,16 @@ defmodule Shorty.MixProject do
   defp deps do
     [
       {:ecto_sql, "~> 3.6"},
+      {:ex_machina, "~> 2.7.0", only: [:dev, :test]},
       {:floki, ">= 0.30.0", only: :test},
       {:gettext, "~> 0.18"},
+      {:hashids, github: "snaiper80/hashids-erlang", tag: "1.0.5"},
       {:jason, "~> 1.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.3", only: :dev},
+      # Using `master` branch because of https://github.com/phoenixframework/phoenix_live_reload/issues/113 
+      {:phoenix_live_reload,
+       github: "phoenixframework/phoenix_live_reload", tag: "master", only: :dev},
       # Live view is installed, but only used for the new Phoenix 1.6 > heex
       # template engine. No part of LiveView was actually used. More info:
       # https://www.phoenixframework.org/blog/phoenix-1.6-released

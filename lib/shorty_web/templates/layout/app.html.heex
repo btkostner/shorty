@@ -1,6 +1,68 @@
-<main class="container">
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+<header class="px-4 py-4 h-24">
+  <%= if flash = get_flash(@conn, :info) do %>
+    <%# TODO: We should transition these so they are even smoother %>
+    <div
+      class="max-w-2xl mx-auto rounded-md bg-green-800 px-5 h-16 flex items-center"
+      x-data="{ open: true }"
+      x-show="open"
+      x-init="setTimeout(() => { open = false }, 2500)"
+    >
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p class="ml-3 text-md text-green-50 tracking-wide">
+        <%= flash %>
+      </p>
+      <div class="ml-auto pl-3">
+        <div class="-mx-1.5 -my-1.5">
+          <button
+            type="button"
+            class="inline-flex rounded-md p-1.5 text-green-400 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-800 focus:ring-green-300"
+            x-on:click="open = false"
+          >
+            <span class="sr-only">Dismiss</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-  <%= @inner_content %>
-</main>
+  <%= if flash = get_flash(@conn, :error) do %>
+    <div
+      class="max-w-2xl mx-auto rounded-md bg-red-800 px-5 h-16 flex items-center"
+      x-data="{ open: true }"
+      x-show="open"
+      x-init="setTimeout(() => { open = false }, 3500)"
+    >
+      <div class="flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p class="ml-3 text-md text-red-50 tracking-wide">
+        <%= flash %>
+      </p>
+      <div class="ml-auto pl-3">
+        <div class="-mx-1.5 -my-1.5">
+          <button
+            type="button"
+            class="inline-flex rounded-md p-1.5 text-red-300 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-800 focus:ring-red-300"
+            x-on:click="open = false"
+          >
+            <span class="sr-only">Dismiss</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</header>
+
+<%= @inner_content %>

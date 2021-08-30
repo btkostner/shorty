@@ -63,6 +63,7 @@ defmodule ShortyWeb do
       import ShortyWeb.ErrorHelpers
       import ShortyWeb.Gettext
 
+      alias ShortyWeb.Endpoint
       alias ShortyWeb.Router.Helpers, as: Routes
     end
   end
