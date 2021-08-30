@@ -25,6 +25,10 @@ shorty-*.tar
 # Ignore assets that are produced by build tools.
 /priv/static/
 
+# Ignore Dialyzer plt files
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
+
 # In case you use Node.js/npm, you want to ignore these.
 npm-debug.log
 /assets/node_modules/

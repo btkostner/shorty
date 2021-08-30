@@ -47,7 +47,7 @@ defmodule Shorty.Shortener.Url do
         Keyword.put([], field, "must include a host")
 
       # Anyone in control of a top level domain, really doesn't need a Url shortener.
-      %{host: host} ->
+      %{host: host} when is_binary(host) ->
         if String.contains?(host, "."),
           do: [],
           else: Keyword.put([], field, "can't be top level")
