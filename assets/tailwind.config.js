@@ -8,6 +8,17 @@ module.exports = {
   ],
 
   theme: {
+    fontFamily: {
+      sans: [
+        'inter',
+        '"Open Sans"',
+        '"Nato Sans"',
+        'Roboto',
+        '"Droid Sans"',
+        'sans-serif'
+      ]
+    },
+
     fill: (theme) => ({
       gray: theme('colors.gray')
     })
