@@ -10,6 +10,7 @@ config :shorty, Shorty.Repo,
   password: "postgres",
   database: "shorty_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: System.get_env("DB_HOST", "localhost"),
+  port: "DB_PORT" |> System.get_env("5432") |> String.to_integer(),
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

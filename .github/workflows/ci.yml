@@ -19,6 +19,8 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout Code
@@ -52,6 +54,7 @@ jobs:
         run: mix test
         env:
           DB_HOST: postgres
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
 
   Format:
     runs-on: ubuntu-latest
