@@ -9,7 +9,7 @@ config :shorty, Shorty.Repo,
   username: "postgres",
   password: "postgres",
   database: "shorty_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  hostname: System.get_env("DB_HOST", "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
@@ -17,7 +17,7 @@ config :shorty, Shorty.Repo,
 # you can enable the server option below.
 config :shorty, ShortyWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
