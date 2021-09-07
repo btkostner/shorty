@@ -1,0 +1,26 @@
+FROM elixir:1.12-alpine
+
+RUN set -xe; \
+  apk add --update  --no-cache \
+    bash \
+    g++ \
+    gcc \
+    git \
+    inotify-tools \
+    libc-dev \
+    make \
+    nodejs \
+    npm \
+    python3
+
+RUN mkdir -p /opt/shorty
+WORKDIR /opt/shorty
+
+RUN set -xe; \
+  mix local.hex --force; \
+  mix local.rebar --force;
+
+VOLUME /opt/shorty
+EXPOSE 4000
+
+CMD ["mix", "phx.server"]

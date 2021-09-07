@@ -1,0 +1,25 @@
+---
+
+version: "3"
+
+services:
+  database:
+    image: postgres:13-alpine
+    network_mode: host
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  shorty:
+    build:
+      context: .
+      dockerfile: Dockerfile-development
+    command: mix phx.server
+    working_dir: /opt/shorty
+    network_mode: host
+    environment:
+      - MIX_ENV
+    volumes:
+      - .:/opt/shorty:cached
+    depends_on:
+      - database

@@ -73,14 +73,13 @@ defmodule Shorty.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      "assets.deploy": [
-        "esbuild default --minify",
-        "cmd --cd assets npm run build",
-        "phx.digest"
-      ],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "assets.get": ["cmd --cd assets npm ci"],
+      "assets.build": ["cmd --cd assets npm run build", "esbuild default --minify"],
+      "assets.deploy": ["assets.get", "assets.build", "phx.digest"],
+      "ecto.seed": ["run priv/repo/seeds.exs"],
+      "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      setup: ["deps.get", "ecto.setup", "cmd --cd assets npm ci"],
+      setup: ["deps.get", "assets.get", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
