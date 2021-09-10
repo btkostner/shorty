@@ -8,6 +8,8 @@ RUN set -xe; \
     git \
     libstdc++ \
     make \
+    nodejs \
+    npm \
     tzdata;
 
 RUN mkdir -p /opt/shorty
@@ -21,7 +23,7 @@ RUN set -xe; \
   mix local.hex --force; \
   mix local.rebar --force; \
   mix deps.get; \
-  mix deps.compile --all; \
+  MIX_ENV=dev mix assets.deploy; \
   mix release
 
 FROM alpine:3.13 as release
@@ -52,7 +54,7 @@ USER shorty
 
 WORKDIR /opt/shorty
 
-EXPOSE 4000
+EXPOSE 8080
 
 ENTRYPOINT ["/opt/shorty/bin/shorty"]
 
