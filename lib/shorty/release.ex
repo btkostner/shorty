@@ -1,4 +1,6 @@
 defmodule Shorty.Release do
+  @moduledoc false
+
   @app :shorty
 
   def migrate do
