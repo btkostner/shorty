@@ -25,11 +25,20 @@ defmodule Shorty.ShortenerTest do
       assert Shortener.get_url_by_hash!(url.hash) == url
     end
 
+    test "get_url_by_hash!/1 raises Ecto.NoResultsError on decode failure" do
+      assert_raise Ecto.NoResultsError, fn -> Shortener.get_url_by_hash!("no") end
+    end
+
     test "create_url/1 with valid data creates a url" do
       valid_attrs = %{url: "https://example.com/create_url/1"}
 
       assert {:ok, %Url{} = url} = Shortener.create_url(valid_attrs)
       assert url.url == "https://example.com/create_url/1"
+    end
+
+    test "create_url/1 with already inserted url returns same hash" do
+      %{hash: hash, url: url} = insert(:url) |> populate_hash()
+      assert {:ok, %Url{hash: ^hash}} = Shortener.create_url(%{"url" => url})
     end
 
     test "create_url/1 with invalid data returns error changeset" do

@@ -25,7 +25,7 @@
   <a href="#about">About</a> •
   <a href="#features">Features</a> •
   <a href="#running">Running</a> •
-  <a href="#development">Development</a> •
+  <a href="#developing">Developing</a> •
   <a href="#faq">FAQ</a>
 </p>
 
@@ -36,7 +36,7 @@ Shorty is a dead simple URL shortener written in Elixir. It uses [hashids](https
 ## Features
 
 - A simple interface for adding URLs
-- Exact same URLs get the exact same hashes
+- Exact same URL gets the exact same hash
 - A single PostgreSQL dependency
 - No JavaScript required (though it does add some nice helper features)
 - Easy to deploy docker image
@@ -73,7 +73,7 @@ HOST=
 SECRET_KEY_BASE=
 ```
 
-For more information can be found in the section below.
+More information can be found in the [environmental variables section](#Environmental-Variables) below.
 
 Then you will want to migrate your database with this command:
 
@@ -109,7 +109,7 @@ Next, simply run `make setup` to build the docker images needed for development.
 
 Next, you can run `make server` to start the development server. Most code should hot reload and be available without having to restart the server.
 
-And lastly, to run tests, do `make test`. This will make sure the basic unit tests pass. More extensive testing, linting, and formatting will be ran when a PR is created.
+If you want to run the unit tests, you can do `make test`. And if you want to do the linting and formatting, you can do `make lint`. All of these will be ran when you open a PR.
 
 ## FAQ
 
