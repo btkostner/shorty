@@ -45,23 +45,26 @@ defmodule Shorty.MixProject do
       {:ex_machina, "~> 2.7.0", only: [:dev, :test]},
       {:credo, "~> 1.5", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
-      {:esbuild, "~> 0.1", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.3.1", runtime: Mix.env() == :dev},
       {:floki, ">= 0.30.0", only: :test},
       {:gettext, "~> 0.18"},
       {:hashids, github: "snaiper80/hashids-erlang", tag: "1.0.5"},
       {:jason, "~> 1.2"},
+      {:mime, "~> 2.0", override: true},
       {:phoenix_ecto, "~> 4.4"},
-      {:phoenix_html, "~> 3.0"},
+      {:phoenix_html, "~> 3.0.3"},
       {:phoenix_live_reload, "~> 1.3.3", only: :dev},
       # Live view is installed, but only used for the new Phoenix 1.6 > heex
       # template engine. No part of LiveView was actually used. More info:
       # https://www.phoenixframework.org/blog/phoenix-1.6-released
-      {:phoenix_live_view, "~> 0.16.0"},
+      {:phoenix_live_view, "~> 0.16.3"},
       {:phoenix, "~> 1.6.0-rc.0", override: true},
-      {:plug_cowboy, "~> 2.5"},
+      {:plug_cowboy, "~> 2.5.2"},
       {:postgrex, ">= 0.0.0"},
+      {:telemetry, "~> 1.0.0", override: true},
       {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"}
+      {:telemetry_poller, "~> 1.0"},
+      {:wallaby, "~> 0.28.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -80,7 +83,7 @@ defmodule Shorty.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       setup: ["deps.get", "assets.get", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "assets.build", "test"]
     ]
   end
 end

@@ -12,7 +12,8 @@ config :shorty, Shorty.Repo,
   hostname: System.get_env("DB_HOST", "localhost"),
   port: "DB_PORT" |> System.get_env("5432") |> String.to_integer(),
   pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: 10
+  pool_size: 10,
+  sandbox: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.

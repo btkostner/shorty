@@ -27,6 +27,13 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
+# Configure Wallaby OTP app for Ecto integration
+config :wallaby,
+  otp_app: :shorty,
+  chromedriver: [
+    headless: true
+  ]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

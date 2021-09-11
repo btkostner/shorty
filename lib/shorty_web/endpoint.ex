@@ -29,6 +29,10 @@ defmodule ShortyWeb.Endpoint do
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :shorty
   end
 
+  if sandbox = Application.get_env(:shorty, Shorty.Repo) do
+    plug Phoenix.Ecto.SQL.Sandbox, sandbox: sandbox
+  end
+
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
