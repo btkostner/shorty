@@ -3,6 +3,7 @@ FROM elixir:1.12-alpine
 RUN set -xe; \
   apk add --update  --no-cache \
     bash \
+    chromium-chromedriver \
     g++ \
     gcc \
     git \
